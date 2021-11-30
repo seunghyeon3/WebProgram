@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map.html</title>
+    <!-- <script src="data.js"></script> -->
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+
+                    var filterAry = dataAry.filter((item, index, ary) => {
+                        return item.salary > 10000;
+                    });
+
+                    var mapAry = filterAry.map((item, index, ary) => {
+                        var obj = {};
+                        obj.name = item.first_name + ' ' + item.last_name;
+                        obj.sal = item.salary;
+                        return obj;
+                    });
+
+                    console.log(mapAry);
+
+                    var div = document.getElementById('show');
+                    mapAry.forEach((item, index, ary) => {
+                        console.log(item, index, ary);
+                        var p = document.createElement('p');
+                        p.textContent = item.name;
+                        div.appendChild(p);
+                    });
+
+                    console.clear();
+                    console.log('---------------------------------------');
+
+                    filterAry = dataAry.filter(item => {
+                            return item.salary > 10000;
+                        }).map(item => {
+                            return item.salary;
+                        })
+                        .join('-');
+                    //var str = filterAry.join(',');
+                    console.clear();
+                    console.log(filterAry);
+                    var newAry = filterAry.split(','); // split , 을 기준으로 배열을 만들어주는 메소드
+                    console.log(newAry);
+
+                    //console.log(dataAry);
+
+                    dataAry.forEach((item, ind, ary) => {
+                        console.log(item, ind, ary)
+                    });
+
+                });
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

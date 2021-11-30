@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist.html</title>
+    <style>
+        .buttons {
+            display: inline-block;
+            width: 200px;
+        }
+
+        #todo {
+            background-color: khaki;
+        }
+
+        #complete {
+            background-color: rgb(15, 92, 155);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h1>To Do List</h1>
+            <input type="text" name="text" id="text" onchange="addFnc(event)">
+            <button id="new">+</button>
+        </header>
+
+        <div id="wrapper">
+            <h3>To Do</h3>
+            <ul id="todo">
+                <li>Complete
+                    <div class='buttons'>
+                        <button onclick="remove(event)">Delete</button>
+                        <button onclick="completeFnc(event)">Complete</button>
+                    </div>
+                </li>
+            </ul>
+            <h3>Completed</h3>
+            <ul id="complete">
+                <li>Completed!!
+                    <div class='buttons'>
+                        <button onclick="remove(event)">Delete</button>
+                        <button onclick="todoFnc(event)">To Do</button>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('text').addEventListener('keyup', function(){
+            //keycode 이용
+            console.log()
+        })
+        //부모.부모.remove
+        function completeFnc(e) {
+            let targetList = e.target.parentNode.parentNode;
+            targetList.children[0].children[1].textContent = 'To Do';
+            targetList.children[0].children[1].setAttribute('onclick', 'todoFnc(event)');
+            document.getElementById('complete').appendChild(targetList);
+        }
+
+        function todoFnc(e) {
+            let targetList = e.target.parentNode.parentNode;
+            targetList.children[0].children[1].textContent = 'Complete';
+            targetList.children[0].children[1].setAttribute('onclick', 'completeFnc(event)');
+            document.getElementById('todo').appendChild(targetList);
+        }
+
+        function remove(e) {
+            e.target.parentNode.parentNode.remove();
+        }
+
+        document.getElementById('new').addEventListener('click', function () {
+            let userInputValue = document.getElementById('text').value;
+            let li = document.createElement('li');
+            let val = document.createTextNode(userInputValue + ' ');
+            li.appendChild(val);
+            var div = document.createElement('div');
+            div.setAttribute("class", 'buttons ');
+            div.innerHTML =
+                '<button onclick="remove(event)">Delete</button><button onclick="completeFnc(event)">Complete</button>';
+            li.appendChild(div);
+            document.getElementById('todo').appendChild(li);
+            e.target.value = ' ';
+        });
+
+        // function addFnc(e) {
+        //         let userInputValue = e.target.value;
+        //         let li = document.createElement('li');
+        //         let val = document.createTextNode(userInputValue + ' ');
+        //         li.appendChild(val);
+        //         var div = document.createElement('div');
+        //         div.setAttribute("class", 'buttons ');
+        //         div.innerHTML =
+        //             '<button onclick="remove(event)">Delete</button><button onclick="completeFnc(event)">Complete</button>';
+        //         li.appendChild(div);
+        //         document.getElementById('todo').appendChild(li);
+        //         e.target.value = ' ';
+        // }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/basic.html</title>
+    <link rel="stylesheet" href="calender.css">
+    <!-- <script src="basic.js"></script> -->
+    <!-- <script src="funcion2.js"></script> -->
+    <!-- <script src="calendar.js"></script> -->
+    <script>
+        //console.log('1');
+        var fruits = ['apple', 'banana', 'cherry'];
+
+        window.addEventListener('DOMContentLoaded', function () { //DOMContentLoaded 전체페이지를 읽고 난 후 라는 뜻
+
+            var show = document.getElementById('show');
+            console.log(show.textContent);
+            var shows = document.getElementsByTagName('div');
+           //console.log('2');
+            console.log(shows[0].textContent);
+            console.log(show);
+
+            var cls = document.getElementsByClassName('show');
+            console.log(cls[0].textContent);
+
+            var selector = document.querySelector('#show'); //특정 형태 가져옴(ex, #'id')
+            var selector = document.querySelectorAll('ul>li'); //경로 검색 후 다 찾아옴
+            console.log(selector);
+            selector[0].textContent = '사과';
+
+            var li = document.createElement('li');
+            li.textContent = 'Melon';
+            document.querySelector('ol').appendChild(li);
+
+            var div = document.createElement('div');
+
+
+            var innerDiv = document.createElement('div');
+            //innerDiv.textContent = 'Last';
+            innerDiv.setAttribute('id', 'last');
+            /*
+            var last = document.querySelector("#last");
+            console.log(document.querySelector('#temp'));
+            console.log(innerDiv);
+            console.log(last);
+            last.textContent = 'Last';
+            innerDiv.textContent = last;*/
+            div.appendChild(innerDiv);
+            document.querySelector('ol').appendChild(div);
+
+        });
+        //console.log('3');
+    </script>
+</head>
+
+<body>
+
+    <div id="temp"></div>
+
+    <div id="show">idshow1</div>
+    <div class="show">classshow1</div>
+    <div class="show">classshow2</div>
+    <p class="show">Hello4</p>
+    <ul>
+        <li id='apple'>Apple</li>
+        <li id='banana'>Banana</li>
+        <li id='cherry'>Cherry</li>
+    </ul>
+
+    <ol>
+        <li id='apple'>Apple</li>
+        <li id='banana'>Banana</li>
+        <li id='cherry'>Cherry</li>
+    </ol>
+
+    <!--
+        <div>
+        <div id="last">Last</div>
+    </div>
+    -->
+    <script>
+        //console.log('4');
+    </script>
+</body>
+
+</html>

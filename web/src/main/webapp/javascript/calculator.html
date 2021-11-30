@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator.html</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
+
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: DodgerBlue;
+        width: 51%;
+    }
+
+    .flex-container>div {
+        background-color: #f1f1f1;
+        width: 100px;
+        margin: 10px;
+        text-align: center;
+        line-height: 75px;
+        font-size: 30px;
+    }
+
+    .flex-container>div:hover {
+        background-color: crimson;
+        cursor: pointer;
+    }
+
+
+    #display {
+        display: inline-block;
+        width: 96%;
+        text-align: right;
+        padding-right: 20px;
+        background-color: rgb(255, 209, 148);
+    }
+</style>
+
+<body>
+    <div class="flex-container">
+        <div id='display'>0</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>+</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>-</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>*</div>
+        <div>C</div>
+        <div>0</div>
+        <div>=</div>
+        <div>/</div>
+    </div>
+   // <div id='display2'>&nbsp;</div>
+    <script>
+        let btns = document.querySelectorAll('.flex-container>div');
+        let display = document.getElementById('display');
+        let display2 = document.getElementById('display2');
+        let first, last;
+        let oper = '';
+        let num = 0;
+        for (let btn of btns) {
+            btn.addEventListener('click', function () {
+
+                if (this.textContent == '=') {
+                    //last = display.textContent;
+                    //display.textContent = cal(parseInt(first), parseInt(last), oper);
+                    switch (oper) {
+                        case '+':
+                            num += parseInt(display.textContent);
+                            break;
+                        case '-':
+                            num -=  parseInt(display.textContent);
+                            break;
+                        case '*':
+                            num *= parseInt(display.textContent);
+                            break;
+                        case '/':
+                            num /= parseInt(display.textContent);
+                            break;
+                    }
+                    display.textContent = num;
+
+                } else if (this.textContent == 'C') {
+                    num = 0;
+                    display.innerHTML = '&nbsp';
+
+                } else if (this.textContent == '+') {
+                    num += parseInt(display.textContent);
+                    oper = '+';
+                    display.innerHTML = '&nbsp';
+
+                } else if (this.textContent == '-') {
+
+                    num -= parseInt(display.textContent);
+                    oper = '-';
+                    display.innerHTML = '&nbsp';
+
+                } else if (this.textContent == '*') {
+
+                    num *= parseInt(display.textContent);
+                    oper = '*';
+                    display.innerHTML = '&nbsp';
+
+                } else if (this.textContent == '/') {
+
+                    num /= parseInt(display.textContent);
+                    oper = '/';
+                    display.innerHTML = '&nbsp';
+
+                } else {
+                    if (display.textContent == '0') {
+                        display.textContent = this.textContent;
+                    } else {
+                        display.textContent += this.textContent;
+                    }
+                }
+            })
+        }
+
+        function cal(numAry, oper, length) {
+
+            let result = 0;
+
+            switch (oper) {
+                case "+":
+                    for (let i = 0; i < length; i++) {
+                        result += numAry[i];
+                    }
+                    return result;
+
+                case "-":
+                    numAry.forEach(item => {
+                        result -= item;
+                    });
+                    return result;
+
+                case "*":
+                    numAry.forEach(item => {
+                        result *= item;
+                    });
+                    return result;
+                case "/":
+                    numAry.forEach(item => {
+                        result /= item;
+                    });
+                    return result;
+
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>

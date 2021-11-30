@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>math.html</title>
+</head>
+
+<body>
+    <script>
+        var num = 12.3;
+        num = '12.3';
+        var result = Math.sign(num);
+        console.log(Math.pow(10, 2));
+
+        if (Math.sign(num) == 1) console.log('양수');
+        else if (Math.sign(num) == -1) console.log('음수');
+
+        var uniqNum = [];
+
+        console.clear();
+
+        // for (var i = 0; i < 6; i++) {
+        //     result = Math.floor(Math.random() * 6) + 1;
+
+        //     if (uniqNum.indexOf(result) >= 0) {
+        //         i--;
+        //         continue;
+        //     }
+        //     uniqNum.push(result);
+        //     //console.log(`임의의 수: ${result}`);
+        // }
+
+        var i = 0;
+        while(i<10){
+            result = Math.floor(Math.random() * 100) + 1;
+            if (uniqNum.indexOf(result) >= 0) {
+                continue;
+            }
+            uniqNum.push(result);
+            i++;            
+        }
+
+        uniqNum.sort(function(a, b){ // a>b : +, a<b : -
+            return a-b;
+            // if(a>b){
+            //     return 1;
+            // }else{
+            //     return -1;
+            // }
+        });
+
+        uniqNum.reverse();
+
+        // var num = new Set();
+
+        // while(num.size < 3){
+        //     num.add(Math.floor(Math.random() * 6) + 1);
+        // }
+
+        // result = num.values();
+        // for(var r of result){
+        //     console.log(r);
+        // }
+        // console.log('-------------------');
+        // num.forEach(item =>{
+        //     console.log(item);
+        // });
+       console.log(uniqNum);
+    </script>
+</body>
+
+</html>

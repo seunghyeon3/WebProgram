@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+<record><name>hong</name><phone>010-1111-1111</phone><address>대구 중구 100번지</address><birth>98-10-03</birth></record>
+<record><name>kim</name><phone>010-2222-2222</phone><address>대구 중구 200번지</address><birth>94-12-03</birth></record>
+<record><name>park</name><phone>010-3333-3333</phone><address>대구 중구 300번지</address><birth>99-11-03</birth></record>
+<record><name>lee</name><phone>010-4444-4444</phone><address>대구 중구 400번지</address><birth>91-07-03</birth></record>
+</dataset>

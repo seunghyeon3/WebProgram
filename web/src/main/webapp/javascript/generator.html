@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/generator.html</title>
+    <script>
+        var data =
+            `
+    [{"id":1,"first_name":"Theresina","last_name":"Gress","email":"tgress0@e-recht24.de","gender":"Male","salary":3673},
+    {"id":2,"first_name":"Brianna","last_name":"Coxen","email":"bcoxen1@ucsd.edu","gender":"Male","salary":12830},
+    {"id":3,"first_name":"Kelsi","last_name":"Maghull","email":"kmaghull2@mtv.com","gender":"Female","salary":12297},
+    {"id":4,"first_name":"Sanford","last_name":"Comazzo","email":"scomazzo3@printfriendly.com","gender":"Female","salary":13255},
+    {"id":5,"first_name":"Bride","last_name":"Lawry","email":"blawry4@unesco.org","gender":"Female","salary":11409},
+    {"id":6,"first_name":"Liva","last_name":"Shmyr","email":"lshmyr5@columbia.edu","gender":"Female","salary":7974},
+    {"id":7,"first_name":"Matthew","last_name":"Maudson","email":"mmaudson6@hatena.ne.jp","gender":"Female","salary":3107},
+    {"id":8,"first_name":"Cele","last_name":"Davio","email":"cdavio7@github.io","gender":"Female","salary":9032},
+    {"id":9,"first_name":"Dulcy","last_name":"Hamlen","email":"dhamlen8@4shared.com","gender":"Female","salary":10060},
+    {"id":10,"first_name":"Daryle","last_name":"Blanking","email":"dblanking9@etsy.com","gender":"Male","salary":14534}]`;
+
+        var employees = JSON.parse(data); //json 문자열 => javascript object로 변경.
+        var genderEmp = [];
+        var fields = ['id', 'first_name', 'last_name', 'salary', 'email', 'gender'];
+        window.addEventListener('DOMContentLoaded', onLoadFnc);
+
+
+        function onLoadFnc() {
+            //표 형태로 리스트 출력
+            var table = document.createElement('table');
+            table.setAttribute('border', '1');
+            table.setAttribute('id', 'tbl');
+            var thead = makeHead();
+            var tbody = makeBody(employees);
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            var parent = document.getElementById('show');
+            parent.appendChild(table);
+
+            //radio버튼에 이벤트 등록.
+            var radios = document.querySelectorAll('div>input[type="radio"]');
+            console.log(radios);
+            for (var radio of radios) {
+                radio.onchange = onChangeFunc;
+            }
+            var btn = document.getElementById('searchBtn');
+            btn.onclick = button1_click;
+        }
+
+
+        //onchange 이벤트으 콜백 함수.
+        function onChangeFunc() {
+            //console.log(this.value);
+            var gender = this.value;
+            genderEmp = employees.filter(item => item.gender == gender);
+            console.log(genderEmp);
+            document.getElementById('tbd').remove();
+            document.getElementById('tbl').appendChild(makeBody(genderEmp));
+        }
+
+        function makeBody(ary) {
+            var tbody = document.createElement('tbody');
+            tbody.setAttribute('id', 'tbd');
+            ary.forEach(item => {
+                //console.log(item);
+                var tr = makeTr(item);
+                tbody.appendChild(tr);
+            });
+            return tbody;
+        }
+
+        function makeTr(employee) {
+            var tr = document.createElement('tr');
+            fields.forEach(item => {
+                var td = document.createElement('td');
+                td.textContent = employee[item];
+                tr.appendChild(td);
+            });
+            return tr;
+        }
+
+        function makeHead() {
+            var thead = document.createElement('thead');
+            var tr = document.createElement('tr');
+            //for(var field of fields){
+            fields.forEach(item => {
+                var th = document.createElement('th');
+                th.textContent = item;
+                tr.appendChild(th);
+            });
+            thead.appendChild(tr);
+            return thead;
+        }
+
+        function button1_click() {
+            var salary = document.getElementById('searchSalary');
+            var radios = document.querySelector('div>input[type="radio"]:checked').value;
+            var radio = document.getElementsByName('gender');
+            for (var i = 0; i < radios.length; i++) {
+                genderEmp = employees.filter(item => (item.gender == radios && item.salary > salary.value));
+            }
+            document.getElementById('tbd').remove();
+            document.getElementById('tbl').appendChild(makeBody(genderEmp));
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <input type="radio" name="gender" value='Male'>남자
+        <input type="radio" name="gender" value='Female'>여자
+        <input type="number" name="" id="searchSalary">
+        <button id='searchBtn'>조회</button>
+    </div>
+    <div id="show"></div>
+    <!-- <script src = "generator.js"></script> -->
+</body>
+
+</html>

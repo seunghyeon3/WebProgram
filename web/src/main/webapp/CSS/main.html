@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레이아웃의 메인페이지</title>
+    <link rel="stylesheet" href="mystyle.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- 타이틀 -->
+        <div class="home">
+            <a href="#"><img src="../images/2.jpg"></a>
+        </div>
+        <div class="welcome">
+            <h2>할매네커피</h2>
+        </div>
+        <div class="login">
+            <!-- <form action=""> -->
+                <input type="text" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <!-- <input type="button" value="로그인"> -->
+                <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">로그인</button>
+            <!-- </form> -->
+        </div>
+    </header>
+    <nav>
+        <!-- 메뉴 -->
+        <ul>
+            <li>메뉴1
+                <div class="sub">
+                    <p>하위메뉴1</p>
+                    <p>하위메뉴2</p>
+                    <p>하위메뉴3</p>
+                </div>
+            </li>
+            <li>메뉴2
+                <div class="sub">
+                    <p>하위메뉴1</p>
+                    <p>하위메뉴2</p>
+                    <p>하위메뉴3</p>
+                </div>
+            </li>
+            <li>메뉴3
+                <div class="sub">
+                    <p>하위메뉴1</p>
+                    <p>하위메뉴2</p>
+                    <p>하위메뉴3</p>
+                </div>
+            </li>
+            <li>메뉴4
+                <div class="sub">
+                    <p>하위메뉴1</p>
+                    <p>하위메뉴2</p>
+                    <p>하위메뉴3</p>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <section>
+        <!-- 메인컨텐츠 -->
+        <div class="contents">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo explicabo officia deserunt mollitia aut
+                officiis debitis porro error, consequuntur voluptates iste accusantium natus a nisi quia? Accusantium
+                quia cum similique.</p>
+            <div class="item">
+                <img src="../images/meat.jpg" alt="">
+                <p>카페 아메리카노</p>
+            </div>
+            <div class="item">
+                <img src="..//images/meat.jpg" alt="">
+                <p>아이스 아메리카노</p>
+            </div>
+            <div class="item">
+                <img src="../images/meat.jpg" alt="">
+                <p>카라멜 마키아또</p>
+            </div>
+            <div class="item">
+                <img src="../images/meat.jpg" alt="">
+                <p>아이스 카라멜 마키아또</p>
+            </div>
+            <div class="item">
+                <img src="../images/meat.jpg" alt="">
+                <p>토피 넛 라떼</p>
+            </div>
+            <div class="item">
+                <img src="../images/meat.jpg" alt="">
+                <p>아이스 토피 넛 라떼</p>
+            </div>
+        </div>
+        <footer>
+            &copy; Yedam
+        </footer>
+    </section>
+    <aside>
+        <!-- article -->
+        <div class="myinfo">
+            내정보
+        </div>
+    </aside>
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+                <img src="../images/starbucks.png" alt="https://www.w3schools.com/howto/" class="avatar">
+            </div>
+
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                <button type="submit">Login</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                    class="cancelbtn">Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+        </form>
+    </div>
+   
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax2.html</title>
+    <style>
+        .active {
+            background-color: greenyellow;
+        }
+    </style>
+    <script src="./createTable.js"></script>
+    <script>
+        // let fields = ['name', 'phone', 'score'];
+        // let persons = [{
+        //     name: 'hong',
+        //     phone: '010-1111',
+        //     score: 80
+        // }, {
+        //     name: 'lee',
+        //     phone: '010-2222',
+        //     score: 70
+        // }, {
+        //     name: 'park',
+        //     phone: '010-3333',
+        //     score: 50
+        // }, {
+        //     name: 'kim',
+        //     phone: '010-4444',
+        //     score: 10
+        // }];
+        let fields = ['id', 'sido', 'sigungu', 'centerName', 'phoneNumber', 'zipCode'];
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            let totalData = [];
+            let startCnt = 0,
+                endCnt = 0;
+
+            function showPage(e) {
+                let lbl = e.target.textContent; // ex) 10page =>91 ~ 100
+
+                if (!lbl) {
+                    lbl = 1;
+                }
+
+                //버튼을 클릭했는지 체크
+                if(e.target.nodeType==1){
+                    let actives = document.querySelectorAll('#paging>button');
+                    console.log(actives);
+                    for(let i=0; i<actives.length;i++){
+                        actives[i].removeAttribute('class','active');
+                    }
+                    e.target.setAttribute('class', 'active');
+                }
+
+                startCnt = (lbl - 1) * 10 + 1;
+                endCnt = lbl * 10;
+
+                let filterData = totalData.filter((item, index) => {
+                    return index >= startCnt - 1 && index < endCnt;
+                });
+
+                let tableExist = document.querySelector('#show>table');
+                if (tableExist) {
+                    tableExist.remove();
+                }
+                let table = createTable(fields, filterData);
+                document.getElementById('show').appendChild(table);
+            }
+
+            function makeBtn(size){
+                for (let i = 1; i <= size; i++) {
+                    let btn = document.createElement('button');
+                    btn.textContent = i;
+                    btn.addEventListener('click', showPage);
+                    document.getElementById('paging').appendChild(btn);
+                }
+
+            }
+
+
+            let url =
+                `https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&returnType=JSON&serviceKey=QgHa6v2LSQ%2BqeGMmapD%2B%2FNH60g0vGKGvVKJsU4T0Msj9ooR8zRB4jtp6SN9PDRH19f7dSX2j1D2xqtCIxHsGlw%3D%3D`;
+            // let fields = ['id', 'userId', 'title', 'body'];
+            let xhtp = new XMLHttpRequest();
+            xhtp.open('get', url);
+            xhtp.send();
+            xhtp.onload = function () {
+                let data = JSON.parse(xhtp.responseText); //json text => object
+
+                //페이지 처리를 위한 필요 버튼 갯수 만듬.
+                let totalPage = Math.ceil(data.totalCount / 10);
+                makeBtn(totalPage);
+                //페이지
+                totalData = data.data;
+                showPage(event);
+                // let table = createTable(fields, data.data);
+                // document.getElementById('show').appendChild(table);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="paging"></div>
+    <div id="show"></div>
+</body>
+
+</html>

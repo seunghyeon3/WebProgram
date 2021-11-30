@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>emp/employee.html</title>
+	<script src="./createTable.js"></script>
+	<style>
+		form>label {
+			display: inline-block;
+			background-color: aquamarine;
+			width: 30%;
+			text-align: right;
+		}
+
+		form>input {
+			display: inline-block;
+			width: 60%;
+		}
+
+		form>input[type='submit'],
+		form>input[type='reset'],
+		form>input[type='button'] {
+			width: 30%;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="addRow">
+		<form action="" name="myform" method="post" onsubmit="submitFnc(event)">
+			<label for="employee_id">사원번호</label> <input type="number" name="employee_id" id="employee_id"><label
+				for="first_name">이름</label>
+			<input type="text" name="first_name" id="first_name"> <label for="last_name">성쒸</label> <input type="text"
+				name="last_name" id="last_name"> <label for="email">이메일</label> <input type="text" name="email"
+				id="email"> <input type="hidden" name="job_id" value="IT_PROG"> <label for="hire_date">입사일</label>
+			<input type="date" name="hire_date" id="hire_date"> <label for="salary">급여</label> <input type="number"
+				name="salary" id="salary"> <input type="submit" value="저장"> <input type="reset" value="취소">
+			<input type="button" value="수정" onclick="updateFnc(event)">
+		</form>
+	</div>
+	<h3>사원리스트</h3>
+	<div id="show"></div>
+	<script src="./employee.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax.html</title>
+</head>
+
+<body>
+    <h3>시도 리스트</h3>
+    <div id="sido">
+
+    </div>
+
+    <div id="list"></div>
+    <script>
+        // Asynchronous Javascript And Xml
+        // XML, Json => 서버 <=> 클라이언트 데이터 주고 받는 포맷.
+        // 홍길동25hong@email.com으로 다 붙어있으면 짤라야하므로 해결이 힘듬.
+        // <record><name>홍길동</name><age>35</age>...</record> 묶어서 보내주면 편함.
+        let url =
+            `https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=283&returnType=XML&serviceKey=QgHa6v2LSQ%2BqeGMmapD%2B%2FNH60g0vGKGvVKJsU4T0Msj9ooR8zRB4jtp6SN9PDRH19f7dSX2j1D2xqtCIxHsGlw%3D%3D`;
+        let fields = ['id', 'facilityName', 'sigungu', 'sido', 'centerName', 'address', 'phoneNumber'];
+        let centerAry = [];
+        let xhtp = new XMLHttpRequest(); //서버에 있는 파일 읽어 들임.
+        xhtp.onreadystatechange = function () {
+            //console.log(xhtp.responseText, xhtp.readyState, xhtp.status);
+            if (xhtp.readyState == 4) {
+                if (xhtp.status == 200) {
+                    let data = xhtp.responseXML;
+                    let records = data.getElementsByTagName('item');
+                    for (let i = 0; i < records.length; i++) {
+                        var center = {};
+                        for (let field of fields) {
+                            //   console.log(field, records[i].querySelector('[name="' + field + '"]').textContent);
+                            center[field] = records[i].querySelector('[name="' + field + '"]').textContent;
+                        }
+                        centerAry.push(center);
+                    }
+                    console.log(centerAry);
+                    let sidoAry = new Set();
+                    centerAry.forEach(item => {
+                        sidoAry.add(item.sido);
+                    });
+                    console.log(sidoAry);
+                    sidoAry.forEach(item => {
+                        let btn = document.createElement('button');
+                        btn.textContent = item;
+                        btn.addEventListener('click', findSido);
+                        document.getElementById('sido').appendChild(btn);
+                    });
+                    //밖에서 생성안됨.
+                    function findSido(e) {
+                        let label = e.target.textContent;
+                        let filterAry = centerAry.filter(item => {
+                            return item.sido == label;
+                        });
+
+                        console.log(filterAry[0]);
+                    }
+                }
+
+
+            }
+            // let data = xhtp.responseXML;
+            // let divlist = document.getElementById('list');
+            // let list = data.getElementsByTagName('record');
+            // let tbl = document.createElement('table');
+
+
+            // for (let i=0;i<list.length;i++) {
+            //     let tr = document.createElement('tr');
+            //     let lnth = list[0].children.length;
+            //     for(let j=0; j<lnth;j++){
+            //         let td = document.createElement('td');
+            //         td.textContent = list[i].children[j].textContent;
+            //         tr.appendChild(td);
+            //     }
+
+            //     tbl.appendChild(tr);
+            // }
+            // divlist.appendChild(tbl);
+        }
+
+        xhtp.open('get', url);
+        xhtp.send();
+    </script>
+</body>
+
+</html>

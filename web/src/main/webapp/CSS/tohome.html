@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        hr {
+            border: 0.1px solid black;
+        }
+
+        img{
+            width: 30%;
+        }
+
+        p{
+            font-size: 80%;
+            margin: 0%;
+        }
+        .header>div {
+            display: inline-block;
+        }
+
+        .header>div:nth-child(2) {
+            font-size: 20%;
+            color: rgb(158, 158, 158);
+        }
+
+        .headerSecond {
+            border: 3px solid rgb(206, 206, 206);
+            padding: 10px 0 10px 20px;
+        }
+
+        .headerSecond>div {
+            display: inline-block;
+            position: relative;
+        }
+
+        .headerSecond>div:nth-child(1) {
+            width: 10%;
+            height: 110px;
+        }
+
+        .headerSecond>div.image>img {
+            width: 80%;
+        }
+
+        .headerSecond>div:nth-child(2) {
+            font-size: 85%;
+            width: 89%;
+            top: -80px;
+        }
+
+        .headerSecond>div>button {
+            font-size: 60%;
+            background-color: gray;
+            color: white;
+            width: 80px;
+            border-radius: 2px;
+            border: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 20px 0 20px;
+            border-top: 3px solid rgb(158, 158, 158);
+            border-bottom: 1px solid rgb(158, 158, 158);
+            border-right: none;
+            border-left: none;
+            width: 100%;
+
+        }
+        tbody>tr>td{
+            border: 1px solid rgb(158, 158, 158);
+            padding: 5px 10px 5px;
+            border-left: none;
+        }
+        tbody>tr>td:nth-child(1) {
+            background-color: rgb(201, 201, 201);
+            width: 5%;
+            font-size: 70%;
+        }
+        tbody>tr>td:nth-child(2) {
+            font-size: 80%;
+        }
+
+        .footer{
+            margin-top: 20px;
+        }
+        .footer>div{
+            padding: 3px 10px 3px;
+            font-size: 70%;
+            display: inline-block;
+            border: 1px solid rgb(158, 158, 158);
+        }
+        .footer>div:nth-child(2n+1){
+            background-color: rgb(201, 201, 201);
+            width: 6%;
+            float: left;
+            height: 24px;
+            border-left: none;
+            line-height: 24px;
+        }
+        .footer>div:nth-child(2n){
+            width: 90%;
+            float: left;
+            border-left: none;
+            border-right: none;
+        }
+        .footer>div:nth-child(1),
+        .footer>div:nth-child(2){
+            border-bottom: none;
+        }
+
+        .bottom{
+            display: inline-block;
+            margin-top: 20px;
+            width: 98.5%;
+        }
+        .bottom>button{
+            display: inline-block;
+            width: 5%;
+            background-color: white;
+            font-size: 70%;
+            border: 2px solid rgb(158, 158, 158);
+            border-radius: 2px;
+            height: 25px;
+        }
+        .bottom>button:nth-child(1){
+            float: left;
+        }
+        .bottom>button:not(:nth-last-child(3)){
+            float: right;
+        }
+        .bottom>button:nth-last-child(2){
+            background-color: gray;
+            color: white;
+            margin-left: 5px;
+            
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="header">
+        <div>
+            <b>| 상품 사용후기</b>
+        </div>
+        <div>| 상품사용후기입니다.</div>
+        <hr>
+    </div>
+    <div class="headerSecond">
+        <div class="image">
+            <img src="../images/sana.jpg">
+        </div>
+        <div>
+            [밀앙케이] 엠팝콘 로스터리 판타지 믹스<br>
+            <b>5,500원</b>
+            <hr>
+            <button>
+                상품 상세보기
+            </button>
+        </div>
+    </div>
+    <table>
+        <!-- 꾸며야함. -->
+        <tbody>
+            <tr>
+                <td>
+                    제목
+                </td>
+                <td>
+                    완전 맛있어요
+                </td>
+            </tr>
+            <tr>
+                <td>작성자</td>
+                <td>한****</td>
+            </tr>
+        </tbody>
+    </table>
+    <img src="../images/winter.jpg">
+    <p>또 사먹으려구여</p>
+    <!-- display 변경 -->
+    <div class="footer">
+        <div>
+            첨부파일
+        </div>
+        <div>
+            <input type="file" name="FileName">
+        </div>
+        <div>비밀번호</div>
+        <div><input type="password" style="height: 18px;"></div>
+    </div>
+    <div class="bottom">
+        <button>목록</button>
+        <button>수정</button>
+        <button>삭제</button>
+    </div>
+
+</body>
+
+</html>

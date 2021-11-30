@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Shop Homepage - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#!">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#!">All Products</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                            <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Shop in style</h1>
+                <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+            </div>
+        </div>
+    </header>
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+            </div>
+        </div>
+        <script>
+            function makeOneProduct(obj){
+                let div = document.createElement('div');
+                div.className = "col mb-5"; //div.setAttribute('class', 'col mb-5');
+
+                let div_card = document.createElement('div');
+                div_card.className = "card h-100";
+
+                let div_card_badge = document.createElement('div');
+                div_card_badge.className = 'badge bg-dark text-white position-absolute';
+                div_card_badge.style = 'top: 0.5rem; right: 0.5rem';
+                div_card_badge.textContent = obj['itemCode'];
+
+                let img = document.createElement('img');
+                img.className = 'card-img-top';
+                img.src = '../upload/'+obj['image'];
+                img.alt = '...';
+                
+
+                let div_card_body = document.createElement('div');
+                div_card_body.className ='card-body p-4';
+                let div_card_body_align = document.createElement('div');
+                div_card_body_align.className = 'text-center';
+                let div_card_body_align_h5 = document.createElement('h5');
+                div_card_body_align_h5.className ='fw-bolder';
+                div_card_body_align_h5.textContent = obj['itemName'];
+                let div_card_body_align_star = document.createElement('div');
+                div_card_body_align_star.className = 'd-flex justify-content-center small text-warning mb-2';
+
+                let likeIt = obj['likeIt'];
+                let parseLikeIt = obj['likeIt'].toString();
+
+                console.log(Math.floor(likeIt));
+             
+                let div_card_body_align_star_makeDiv = document.createElement('div');
+                    if(parseLikeIt == '0'){
+                        div_card_body_align_star_makeDiv.className = 'bi-star-empty';
+                        div_card_body_align_star.appendChild(div_card_body_align_star_makeDiv);
+                    }else if(parseLikeIt.indexOf('.') > 0){
+                        for(let i=0; i<Math.floor(likeIt); i++){
+                            let div_card_body_align_star_makeDiv = document.createElement('div');
+                            div_card_body_align_star_makeDiv.className = 'bi-star-fill';
+                            div_card_body_align_star.appendChild(div_card_body_align_star_makeDiv);
+                        }
+                        let div_card_body_align_star_makeDiv = document.createElement('div');
+                        div_card_body_align_star_makeDiv.className = 'bi-star-half';
+                        div_card_body_align_star.appendChild(div_card_body_align_star_makeDiv);
+                    }else{
+                        for(let i=0; i<likeIt; i++){
+                            let div_card_body_align_star_makeDiv = document.createElement('div');
+                            div_card_body_align_star_makeDiv.className = 'bi-star-fill';
+                            div_card_body_align_star.appendChild(div_card_body_align_star_makeDiv);
+                        }
+                    }
+
+                let div_card_body_align_span_originPrice = document.createElement('span');
+                let div_card_body_align_span_salePrice = document.createElement('span');
+
+                div_card_body_align_span_originPrice.className = 'text-muted text-decoration-line-through';
+                div_card_body_align_span_originPrice.style = 'margin-right : 5px';
+
+                div_card_body_align_span_originPrice.textContent = obj['originPrice'];
+                div_card_body_align_span_salePrice.textContent = obj['salePrice'];
+                div_card_body_align.append(div_card_body_align_h5, div_card_body_align_star, div_card_body_align_span_originPrice, div_card_body_align_span_salePrice);
+                
+                div_card_body.append(div_card_body_align);
+
+
+                let div_card_footer = document.createElement('div');
+                div_card_footer.className = 'card-footer p-4 pt-0 border-top-0 bg-transparent';
+                let div_card_footer_align = document.createElement('div');
+                div_card_footer_align.className = 'text-center';
+                let div_card_footer_align_aTag = document.createElement('a');
+                div_card_footer_align_aTag.className = 'btn btn-outline-dark mt-auto';
+                div_card_footer_align_aTag.href = '#';
+                div_card_footer_align_aTag.textContent = 'Add to cart';
+
+                div_card_footer_align.appendChild(div_card_footer_align_aTag);
+                div_card_footer.appendChild(div_card_footer_align);
+
+
+                div_card.append(div_card_badge, img, div_card_body, div_card_footer);
+
+                div.appendChild(div_card);
+                return div;
+            }
+            let xhtp = new XMLHttpRequest();
+            xhtp.open('get', '../ShopItemServlet');
+            xhtp.send();
+            xhtp.onload = function(){
+                let data = JSON.parse(xhtp.responseText);
+                console.log(data);
+                let row = document.querySelector('section>div>div.row');
+
+                for(let i=0; i<data.length; i++){
+                    row.appendChild(makeOneProduct(data[i])); //div 태그 하나 생성.
+                }
+            }
+        </script>
+    </section>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

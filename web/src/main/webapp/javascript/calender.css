@@ -1,0 +1,26 @@
+table{
+    border-collapse: collapse;
+}
+
+thead th{
+    background-color: gray;
+    color: white;
+}
+
+tbody{
+    text-align: center;
+}
+
+tbody>tr>td:nth-child(1){
+    background-color: red;
+    color: seashell;
+}
+
+tbody>tr>td:nth-child(7){
+    background-color: blue;
+    color: seashell;
+}
+
+td.active{
+    background-color: sienna;
+}

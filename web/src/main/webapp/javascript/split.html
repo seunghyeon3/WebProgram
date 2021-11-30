@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #show {
+            width: 500px;
+            height: 230px;
+            border: 2px solid gray;
+        }
+
+        .item {
+            display: inline-block;
+            background-color: yellow;
+            border: 1px solid blue;
+            margin: 1px;
+            width: 110px;
+        }
+
+        .clear {
+            display: inline-block;
+            background-color: white;
+            color: white;
+            border: 1px solid blue;
+            margin: 1px;
+            width: 110px;
+        }
+
+        #timer {
+            display: inline-block;
+            width: 50px;
+            background-color: rgb(160, 160, 142);
+            color: white;
+            text-align: right;
+            padding-right: 3px;
+        }
+    </style>
+    <script>
+        console.log(window);
+        window.addEventListener('DOMContentLoaded', function () {
+            var str =
+                `Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum est necessitatibus nisi, qui atque alias perspiciatis deleniti consectetur vitae soluta quis reprehenderit similique, libero vero. Quos dolorem beatae debitis aut!`;
+            var strAry = str.split(' ');
+            console.log(strAry);
+            var show = document.getElementById('show');
+            strAry.forEach(item => {
+                var div = document.createElement('div');
+                div.setAttribute('class', 'item');
+                // var textnode = document.createTextNode(item);
+                // div.appendChild(textnode);
+                div.textContent = item;
+                show.appendChild(div);
+            });
+            //시간 변경.
+            var remainTime = 200;
+            document.getElementById('timer').textContent = remainTime;
+            var interval =
+                setInterval(function () {
+                    document.getElementById('timer').textContent = --remainTime;
+                    if (!remainTime) {
+                        var items = document.querySelectorAll('.item');
+                        if (!item.length) {
+                            alert('sucees');
+                        } else
+                            alert('fail');
+                        clearInterval(interval);
+                    }
+                }, 1000);
+        });
+
+        function removeItem(e) {
+            //console.log('onchange');
+            var val = e.target.value;
+            var items = document.querySelectorAll('.item');
+            //console.log(items);
+            // console.log(items);
+            // console.log(items.length);
+            // for (var i = 0; i < items.length; i++) {
+            //     if (items[i].textContent == val) {
+            //         //elements[0].parentNode.removeChild(elements[0])
+            //         //items[i].parentNode.removeChild(items[i]);
+            //     }
+            // }
+            // console.log(items.length);
+
+            items.forEach(item => {
+                if (item.textContent == val) {
+                    item.setAttribute('class', 'clear');
+                }
+            });
+            e.target.value = '';
+        }
+
+        function addItem(e) {
+            var val = e.target.value;
+            var items = document.querySelectorAll('.item'); //nodelist 타입
+            //items = document.getElementsByClassName('item'); //htmlcollection 타입
+            console.log(items);
+            var judgement;
+            items.forEach(item => {
+                if (item.textContent == val) {
+                    alert('이미 있슈');
+                    e.target.value = '';
+                    judgement = val;
+                }
+            });
+            // var judgment = items.filter(item =>{
+            //     return item.textContent == val;
+            // });
+            // if(judgment == val){
+            //     alert('이미 있슈');
+            //         e.target.value = '';
+            //         return;
+            // }
+            if(judgement == val){
+                return;
+            }
+            var div = document.createElement('div');
+            div.setAttribute('class', 'item');
+            div.textContent = val;
+            show.appendChild(div);
+            e.target.value = '';
+        }
+
+        //시간 지연 후 아래 내용 수행
+        // setTimeout(() =>{
+        //     window.location['href'] = 'https://www.daum.net';
+        // }, 3000);
+
+        
+    </script>
+
+</head>
+
+<body>
+    <div id="show">
+    </div>
+    입력 : <input type="text" onchange="addItem(event)">
+    <p id='timer'>0</p>
+    <!-- onkeyup : 키보드 누를때마다 이벤트 발생 -->
+</body>
+
+</html>

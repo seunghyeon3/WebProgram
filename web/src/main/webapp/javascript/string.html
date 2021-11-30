@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>string.html</title>
+    <script>
+        var str = `Lorem ipsum dolor, sit amet consectetur adipisicing elit.`;
+        console.log(str.length);
+        var newStr = str.slice(3, 5); //공백 포함, 한자리수는 해당 위치부터
+        newStr = str.substring(3, 5); //3부터 5까지
+        //newStr = str.substr(3,5); // 3부터 5개
+        console.log(newStr);
+        //newStr = str.replace('IPSUM'.toLowerCase(),'로렘').replace('.', ' ');
+        // var reg = / /; new RegExp();
+        newStr = str.replace(/Lorem/ig, '로렘').replace('.', ' '); //i 대소문자 신경안씀.
+        console.log(newStr);
+
+        var person_no = [
+            '950403-1234567', //odd, even 16자리~ 15자리 8~7.5
+            '950403 2234567',
+            '010403/3234567',
+            '0104034234567',
+            '950403*1234567'
+        ];
+
+        var date = new Date();
+
+        var print = check_gender2(person_no);
+
+        function check_gender(gender) {
+            var judgementAry = [gender.length];
+
+            for (var i = 0; i < gender.length; i++) {
+                var str = gender[i].length;
+
+                if ((gender[i].length % 2) == 0) {
+                    var temp = gender[i].substr((str / 2), 1);
+                } else if ((gender[i].length % 2) == 1) {
+                    var temp = gender[i].substr(Math.floor((str / 2)), 1);
+                }
+                judgementAry[i] = compare(gender[i], temp);
+            }
+            return judgementAry;
+        }
+
+        function check_gender2(gender) {
+            var judgementAry = [gender.length];
+
+            for (var i = 0; i < gender.length; i++) {
+                var lnth = parseInt(gender[i]).toString().length;
+
+                if (gender[i].substr(0, 1) == '0') {
+                    lnth += 1;
+                }
+                if (lnth == gender[i].length) {
+                    var temp = gender[i].substr(6, 1);
+                } else {
+                    var temp = gender[i].substr(lnth + 1, 1);
+                }
+
+                judgementAry[i] = compare(gender[i], temp);
+            }
+            return judgementAry;
+        }
+
+        function compare(gender, temp) {
+            var temp = temp;
+            if (date.getFullYear().toString().substring(0, 2) > gender.slice(0, 2)) {
+                if (temp == 3) {
+                    return '남자';
+                } else if (temp == 4) {
+                    return '여자';
+                }
+            } else if (date.getFullYear().toString().substring(0, 2) < gender.slice(0, 2))
+                if (temp == 1) {
+                    return '남자';
+                } else if (temp == 2) {
+                return '여자';
+            } else {
+                return '잘못된값입니다.'
+            }
+        }
+    </script>
+</head>
+
+<body>
+    주민번호 : <input type="text" name="" id="ssn">
+    남 : <input type="radio" name="gender" value="남자">
+    여 : <input type="radio" name="gender" value="여자">
+    잘못된 번호 : <input type="radio" name="gender" value="잘못된값입니다.">
+    <script>
+        // var spec = ['*','-','/','$',' '];
+        document.getElementById('ssn').addEventListener('change', function () {
+            console.log(this.value);
+            var birth = [];
+            birth[0] = this.value;
+            // for(var str of spec){
+            //     birth = birth.replace(str, '');
+            // }
+            console.log(birth[0].length);
+            if(birth[0].length != 14){
+                console.log('잘못된 값입니다.');
+                return;
+            }
+            var gen = check_gender(birth);
+            // var genders = document.querySelectorAll('input[value=' + gen[0] + ']');
+            // genders.checked = true;
+            var genders = document.querySelectorAll('input[name="gender"]');
+            if(gen == '남자'){
+                genders[0].checked = true;
+            }else if(gen == '여자'){
+                genders[1].checked = true;
+            }else
+            genders[2].checked = true;
+            console.log(gen);
+           
+        });
+        //onchange = //함수
+    </script>
+</body>
+
+</html>
